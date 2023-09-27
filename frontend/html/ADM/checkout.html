@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/ADM/style_checkout.css">
+    <script crossorigin="anonymous" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <script src="../../js/admin/checkout.js"></script>
+    <title>Checkout</title>
+</head>
+<body>
+    
+    <header>
+        <button><img src="../../imagens/home.png" alt="home" id="home"></button>
+        <img src="../../imagens/logo2023SEAUPP.png" id="logo_SEAUPP">
+    </header>
+
+    <div id="passwordModal">
+        <div class="modal-content">
+            <h2 id="security">Para encerrar o evento digite: </h2>
+            <input id="senha" placeholder="Digite a senha">
+            <div>
+                <button id="cancelar">Cancelar</button>
+                <button id="continuar">Confirmar</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="overlay"></div>
+    
+    <div id="result">
+        <video id="scanner" playsinline></video>
+    </div>
+
+        <div id="nome">
+            <h4>Nome:</h4>
+        </div>
+
+        <div id="nome_pessoa">
+            <pr id="inName">Nome</pr>
+        </div>
+   
+        <div id="curso">
+            <h4>RG:</h4>
+        </div>
+
+        <div id="curso_pessoa">
+            <pr id="inRG">RG</pr>
+        </div>
+        <div style="width: 100vw; display: flex; align-items: center; justify-content: center;flex-direction: column;">
+            <button id="confirmar" >Confirmar</button><br>
+            <button id="checkout">Checkout em massa</button>
+        </div>
+    <footer>
+        <img src="../../imagens/logoCAEA.png" id="caea">
+    </footer>
+
+
+</body>
+</html>

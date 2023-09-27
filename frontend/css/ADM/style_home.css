@@ -1,0 +1,291 @@
+@font-face {
+    font-family: 'Oswald';
+    src: url('../../imagens/Oswald-VariableFont_wght.ttf') format('truetype'),
+}
+
+body{
+    background-color: #FAFFDF;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Oswald', sans-serif;
+}
+
+header{
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    height: 10vh;
+    margin-top: -10px;
+    align-items: center;
+}
+
+#logo_SEAUPP{
+    height: 120%;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+#mensagem_1{
+    margin-top: 10vh;
+    margin-left: 3vw;
+    font-size: 3vh;
+    color: #1A476A;
+}
+
+#mensagem_2{
+    margin-top: -3vh;
+    margin-left: 3vw;
+    font-size: 3vh;
+    color: #1A476A;
+}
+
+#progresso{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: auto;
+    position: relative;
+    margin-top: 8vh;
+    margin-left: 12vw;
+    font-size: 3vh;
+    color: #1A476A;
+}
+
+#porcentagem{
+    position: relative;
+    margin-left: 1vw;
+    font-size: 3vh;
+    color: #1A476A;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -4vh;
+    height: 3vh;
+}
+  
+.progress-bar__container {
+    width: 80%;
+    height: 4vh;
+    border-radius: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s;
+    will-change: transform;
+    box-shadow: 0 0 5px #1A476A;
+}
+  
+.progress-bar {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    content: "";
+    background-color: #1A476A;
+    top:0;
+    bottom: 0;
+    left: -100%;
+    border-radius: inherit;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    color: white;
+}
+
+.botões{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 40vh;
+}
+
+#feedbacks{
+    background-color: #55C02B;
+    color: #fff;
+    height: 5vh;
+    width: 40vw;
+    border: 0px;
+    border-radius: 20vw;
+    font-size: 3vh;
+    margin-top: 2vh;
+    cursor: pointer;
+}
+
+#feedbacks:hover{
+    background-color: #368516;
+}
+
+#check-in{
+    background-color: #55C02B;
+    color: #fff;
+    height: 5vh;
+    width: 40vw;
+    border: 0px;
+    border-radius: 20vw;
+    font-size: 3vh;
+    margin-top: 2vh;
+    cursor: pointer;
+}
+
+#check-in:hover{
+    background-color: #368516;
+}
+
+#checkout{
+    background-color: #55C02B;
+    color: #fff;
+    height: 5vh;
+    width: 40vw;
+    border: 0px;
+    border-radius: 20vw;
+    font-size: 3vh;
+    margin-top: 2vh;
+    cursor: pointer;
+}
+
+#checkout:hover{
+    background-color: #368516;
+}
+
+#encerrar{
+    background-color: #c6192d;
+    color: #fff;
+    height: 5vh;
+    width: 40vw;
+    border: 0px;
+    border-radius: 20vw;
+    font-size: 3vh;
+    margin-top: 2vh;
+    cursor: pointer;
+}
+
+#encerrar:hover{
+    background-color: #901221;
+}
+
+footer{
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+    width: 90%;
+}
+
+@media (min-width: 600px) {
+    footer {
+      position: relative;
+    }
+      #caea{
+        height: 10%;
+        width: 10%;
+    }
+}
+
+#caea{
+    width: 20%;
+    height: 20%;
+}
+
+#sair{
+    background-color: #1A476A;
+    color: #fff;
+    height: 3vh;
+    width: 15vw;
+    text-align: center;
+    border: 0px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#sair:hover{
+    background-color: #0D2C4A;
+}
+
+/*modal centralizado*/
+#passwordModal{
+    padding-left: 0px;
+    padding-right: 0px;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    border: 0px;
+    position: fixed;
+    z-index: 99999;
+    width: 0vw;
+    height: 30vh;
+    overflow: hidden;
+    background-color: #FAFFDF; 
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: 0.3s width;
+}
+
+#senha{
+    width: 80%;
+    height: 3vh;
+}
+
+#confirmar{
+    background-color: #55C02B;
+    color: #fff;
+    height: 3vh;
+    width: 17vw;
+    text-align: center;
+    border: 0px;
+    border-radius: 20px;;
+    margin-top: 2vh;
+}
+
+#confirmar:hover{
+    background-color: #368516;
+}
+
+#cancelar{
+    background-color: #c6192d;
+    color: #fff;
+    height: 3vh;
+    width: 17vw;
+    text-align: center;
+    border: 0px;
+    border-radius: 20px;;
+    margin-top: 2vh;
+}
+
+#cancelar:hover{
+    background-color: #901221;
+}
+
+.modal-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+/*filtro para quando abrir o modal*/
+#overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
+    z-index: 99998; /* Make sure it's on top of everything */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s display;
+}

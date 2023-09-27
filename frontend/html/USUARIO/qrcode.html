@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <script src = "../../js/user/qrCode.js"></script>
+    <link rel="stylesheet" href="../../css/USUARIO/style_qrcode.css">
+    <link rel="stylesheet" href="../../css/USUARIO/loader.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+    <title>Qr-Code</title>
+</head>
+<body>
+    <header>
+        <button><img src="../../imagens/home.png" alt="home" id="home"></button>
+        <img src="../../imagens/logo2023SEAUPP.png" id="logo_SEAUPP">
+    </header>
+
+    <div class="overlay" id="loadingOverlay">
+        <span class="loader"></span>
+    </div>
+    
+    <div id="mensagem_1">
+        <pr>Use esse QRcode para entrar e sair do evento</pr>
+    </div>
+
+    <div id="qrcode">
+        <img src="" alt="qrCode" id="yourQR">
+    </div>
+
+    <div id="mensagem_2">
+        <pr>Faça o dowload desse QRcode, caso esteja sem conexão à Internet no dia do evento</pr>
+    </div>
+
+    <div id="botão">
+        <button id="download"><a href="" id="downloadQR" style="text-decoration: none; color: #ffff">Download</button>
+    </div>
+
+    <footer>
+        <img src="../../imagens/logoCAEA.png" id="caea">
+    </footer>
+</body>
+</html>

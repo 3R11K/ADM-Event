@@ -1,0 +1,173 @@
+@font-face {
+    font-family: 'Oswald';
+    src: url('../../imagens/Oswald-VariableFont_wght.ttf') format('truetype'),
+}
+
+body{
+    background-color: #FAFFDF;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Oswald', sans-serif;
+}
+
+header{
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    height: 10vh;
+    margin-top: -10px;
+    align-items: center;
+}
+
+#logo_SEAUPP{
+    height: 120%;
+    margin-top: 20px;
+    margin-right: 35px;
+}
+
+#mensagem_1{
+    margin-top: 10vh;
+    margin-left: 3vw;
+    font-size: 3vh;
+    color: #1A476A;
+    font-family: 'Oswald', sans-serif;
+}
+
+#mensagem_2{
+    margin-top: -3vh;
+    margin-left: 3vw;
+    font-size: 3vh;
+    color: #1A476A;
+    font-family: 'Oswald', sans-serif;
+}
+
+.botões{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 40vh;
+}
+
+#qrcode{
+    background-color: #55C02B;
+    color: #fff;
+    height: 5vh;
+    width: 60vw;
+    border: 0px;
+    border-radius: 20vw;
+    font-size: 3vh;
+    margin-top: 2vh;
+    cursor: pointer;
+}
+
+#qrcode:hover{
+    background-color: #368516;
+}
+
+#dados{
+    background-color: #55C02B;
+    color: #fff;
+    height: 5vh;
+    width: 60vw;
+    border: 0px;
+    border-radius: 20vw;
+    font-size: 3vh;
+    margin-top: 2vh;
+    cursor: pointer;
+}
+
+#dados:hover{
+    background-color: #368516;
+}
+
+#perfil{
+    background-color: #1A476A;
+    color: #fff;
+    height: 5vh;
+    width: 40vw;
+    border: 0px;
+    border-radius: 20vw;
+    font-size: 3vh;
+    margin-top: 2vh;
+    cursor: pointer;
+}
+
+#perfil:hover{
+    background-color: #0D2C4A;
+}
+
+footer{
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+    width: 90%;
+}
+
+@media (min-width: 600px) {
+    footer {
+      position: relative;
+}
+    #caea{
+        height: 10%;
+        width: 10%;
+    }
+}
+
+#caea{
+    width: 20%;
+    height: 20%;
+}
+
+#sair{
+    background-color: #1A476A;
+    color: #fff;
+    height: 3vh;
+    width: 15vw;
+    text-align: center;
+    border: 0px;
+    border-radius: 20px;;
+    cursor: pointer;
+}
+
+#sair:hover{
+    background-color: #0D2C4A;
+}
+
+#feedback{
+    background-color: #55C02B;
+    color: #fff;
+    height: 5vh;
+    width: 60vw;
+    border: 0px;
+    border-radius: 20vw;
+    font-size: 3vh;
+    margin-top: 2vh;
+    cursor: pointer;
+}
+
+#feedback:hover{
+    background-color: #368516;
+}
+
+#certificado{
+    background-color: #55C02B;
+    color: #fff;
+    height: 5vh;
+    width: 60vw;
+    border: 0px;
+    border-radius: 20vw;
+    font-size: 3vh;
+    margin-top: 2vh;
+    cursor: pointer;
+}
+
+#certificado:hover{
+    background-color: #368516;
+}
