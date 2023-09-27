@@ -3,24 +3,26 @@ document.addEventListener("DOMContentLoaded", function() {
     // Redirecionando para a nova rota
     window.location.href = "/qrCode";
   };
-  // Obtém uma referência para o botão
-  var downloadButton = document.getElementById("dados");
 
-  // Adiciona um ouvinte de evento de clique ao botão
-  downloadButton.addEventListener("click", function() {
-    // URL do arquivo PDF no servidor
-    var pdfUrl = "https://checkin-seaupp-fdc6d26b4675.herokuapp.com/backend/data/archives/cronograma.pdf";
+// Obtém uma referência para o botão
+var downloadButton = document.getElementById("dados");
 
-    // Cria um elemento de link temporário
-    var link = document.createElement("a");
-    link.href = pdfUrl;
+// Adiciona um ouvinte de evento de clique ao botão
+downloadButton.addEventListener("click", function() {
+  // URL do arquivo PDF no servidor local
+  var pdfUrl = "api/download/cronograma"; // Use a rota local do seu servidor
 
-    // Define o atributo "download" para indicar que é um download
-    link.setAttribute("download", "Cronograma.pdf");
+  // Cria um elemento de link temporário
+  var link = document.createElement("a");
+  link.href = pdfUrl;
 
-    // Aciona o clique no elemento de link
-    link.click();
-  });
+  // Define o atributo "download" para indicar que é um download
+  link.setAttribute("download", "cronograma.pdf");
+
+  // Aciona o clique no elemento de link
+  link.click();
+});
+
 
   document.getElementById("perfil").onclick = function() {
     // Redirecionando para a nova rota
