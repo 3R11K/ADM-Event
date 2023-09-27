@@ -10,8 +10,6 @@ const event = require(path.join(__dirname, "..", "controllers", "adm", "admin", 
 // Importe os módulos corretos do Firebase
 const firebase = require(path.join(__dirname, "..", "data", "firebase"));
 
-app = firebase.app;
-
 // Import das funções de login e logout
 const {login, logout} = require(path.join(__dirname, "..", "controllers", "login.js"));
 const profile = require(path.join(__dirname, "..", "controllers", "profile.js"));
@@ -19,7 +17,6 @@ const profile = require(path.join(__dirname, "..", "controllers", "profile.js"))
 //Funçoes adm
 const loginADM = require(path.join(__dirname, "..", "controllers", "adm", "admin", "loginADM.js"));
 const checkCredentials = require("../controllers/adm/admin/checkCredentials");
-const app = require('../data/firebase');
 
 //import qrCode generator com dados do usuário
 const qrCode = require(path.join(__dirname, "..", "controllers", "check-in", "qrCode.js"));
