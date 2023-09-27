@@ -8,7 +8,9 @@ const isLoggedin = require("../controllers/isLoggedin");
 const event = require(path.join(__dirname, "..", "controllers", "adm", "admin", "event.js"));
 
 // Importe os módulos corretos do Firebase
-const app = require(path.join(__dirname, "..", "data", "firebase"));
+const firebase = require(path.join(__dirname, "..", "data", "firebase"));
+
+app = firebase.app;
 
 // Import das funções de login e logout
 const {login, logout} = require(path.join(__dirname, "..", "controllers", "login.js"));
@@ -17,6 +19,7 @@ const profile = require(path.join(__dirname, "..", "controllers", "profile.js"))
 //Funçoes adm
 const loginADM = require(path.join(__dirname, "..", "controllers", "adm", "admin", "loginADM.js"));
 const checkCredentials = require("../controllers/adm/admin/checkCredentials");
+const app = require('../data/firebase');
 
 //import qrCode generator com dados do usuário
 const qrCode = require(path.join(__dirname, "..", "controllers", "check-in", "qrCode.js"));
@@ -37,26 +40,26 @@ const loadFeedback = require(path.join(__dirname, "..", "controllers", "adm", "a
 const onCertificado = require(path.join(__dirname, "..", "controllers", "adm", "admin", "onCertificado.js"));
 
 // Define as rotas de login e logout
-router.post('/login',app,login);
+router.post('/login',login);
 router.get('/logout',logout);
 
 //rota loginADM
-router.post('/admin/login',app, loginADM);
+router.post('/admin/login', loginADM);
 
 //rota profile
-router.get('/profile',app,isLoggedin,profile)
+router.get('/profile',isLoggedin,profile)
 
 //rota check-in//checkout
-router.post('/check-in',app,checkCredentials,checkIn)
-router.post('/check-out',app,checkCredentials,checkOut)
+router.post('/check-in',checkCredentials,checkIn)
+router.post('/check-out',checkCredentials,checkOut)
 //check-out em massa
-router.get('/check-out-all',app,checkCredentials, (req,res)=>{checkOutAll(req,res)})
+router.get('/check-out-all',checkCredentials, (req,res)=>{checkOutAll(req,res)})
 
 //rota qrCode
-router.get('/qrCodeGet',app,isLoggedin, qrCode)
+router.get('/qrCodeGet',isLoggedin, qrCode)
 
 //check feedback
-router.get("/check-feedback",app, isLoggedin, async (req,res)=>{
+router.get("/check-feedback", isLoggedin, async (req,res)=>{
     let feedback = await checkFeedback(req,res);
     console.log(feedback)
     if(feedback){
@@ -66,11 +69,11 @@ router.get("/check-feedback",app, isLoggedin, async (req,res)=>{
     }
 })
 //turn on feedback and certificado
-router.get("/finish-event",app, checkCredentials, onFeedback, onCertificado,(req,res)=>{
+router.get("/finish-event", checkCredentials, onFeedback, onCertificado,(req,res)=>{
     res.status(202).send("Feedbacks ativados");
 })
 //rota add feedback
-router.post("/add-feedback",app, isLoggedin, (req,res)=>{
+router.post("/add-feedback", isLoggedin, (req,res)=>{
     let feedback = checkFeedback(req,res);
     if(feedback){
         addFeedback(req,res)
@@ -80,7 +83,7 @@ router.post("/add-feedback",app, isLoggedin, (req,res)=>{
 })
 
 //carregar feedbacks
-router.get("/load-feedbacks",app, checkCredentials, ()=>{
+router.get("/load-feedbacks", checkCredentials, ()=>{
     let feedback = checkFeedback(req,res);
     if(feedback){
         loadFeedback()
@@ -90,7 +93,7 @@ router.get("/load-feedbacks",app, checkCredentials, ()=>{
 })
 
 //rota event
-router.get("/event",app, isLoggedin, async (req,res)=>{
+router.get("/event", isLoggedin, async (req,res)=>{
     if(await event){
         res.status(200).send("Evento ocorrendo")
     }else{
