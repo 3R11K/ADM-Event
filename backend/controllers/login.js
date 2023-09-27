@@ -3,8 +3,8 @@ const { getAuth, signInWithEmailAndPassword, signOut } = require("firebase/auth"
 const auth = getAuth();
 
 // Configurar a persistência de sessão como "local"
-const setLocalPersistence = () => {
-  return new Promise((resolve, reject) => {
+async function setLocalPersistence () {
+  return await new Promise((resolve, reject) => {
     auth
       .setPersistence("local")
       .then(() => {
