@@ -4,7 +4,16 @@ const auth = getAuth();
 
 // Configurar a persistência de sessão como "local"
 const setLocalPersistence = () => {
-  return auth.setPersistence(auth.Auth.Persistence.LOCAL);
+  return new Promise((resolve, reject) => {
+    auth
+      .setPersistence("local")
+      .then(() => {
+        resolve();
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
 };
 
 // login function
