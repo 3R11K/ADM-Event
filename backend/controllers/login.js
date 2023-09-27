@@ -4,7 +4,7 @@ const auth = getAuth();
 
 // Configurar a persistência de sessão como "local"
 const setLocalPersistence = () => {
-  return auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+  return auth.setPersistence(auth.Auth.Persistence.LOCAL);
 };
 
 // login function
