@@ -1,4 +1,4 @@
-const { initializeApp } = require("firebase/app");
+const { initializeApp } = require("firebase-admin/app");
 
 
 const firebaseConfig = {

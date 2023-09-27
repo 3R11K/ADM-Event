@@ -19,7 +19,7 @@ app.use('/', require(path.join(__dirname, "..", "routes", "pages"))); //paginas
 //arquivos estaticos
 app.use(express.static(path.join(__dirname,"..","..",'frontend')));
 
-const port = process.env.PORT
+const port = process.env.PORT || 3000
 
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`)

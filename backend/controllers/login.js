@@ -1,53 +1,43 @@
-// login module
 const { getAuth, signInWithEmailAndPassword, signOut } = require("firebase/auth");
 const auth = getAuth();
 
 // Configurar a persistência de sessão como "local"
-async function setLocalPersistence () {
-  return await new Promise((resolve, reject) => {
-    auth
-      .setPersistence("local")
-      .then(() => {
-        resolve();
-      })
-      .catch((error) => {
-        reject(error);
-      });
-  });
-};
+async function setLocalPersistence() {
+  try {
+    await auth.setPersistence("local");
+  } catch (error) {
+    throw error; // Propaga o erro
+  }
+}
 
 // login function
-function login(req, res) {
+async function login(req, res) {
   const email = req.body.email;
   const password = req.body.password;
 
-  setLocalPersistence() // Configurar a persistência como "local"
-    .then(() => {
-      return signInWithEmailAndPassword(auth, email, password);
-    })
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      res.status(200).send(user);
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
-      res.status(400).send(errorMessage);
-    });
+  try {
+    await setLocalPersistence();
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+    res.status(200).send(user);
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.error(errorCode);
+    console.error(errorMessage);
+    res.status(400).send(errorMessage);
+  }
 }
 
 // logout function
-function logout(req, res) {
-  signOut(auth)
-    .then(() => {
-      res.status(200).send("Logout realizado com sucesso");
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+async function logout(req, res) {
+  try {
+    await signOut(auth);
+    res.status(200).send("Logout realizado com sucesso");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Erro durante o logout");
+  }
 }
 
 module.exports = { login, logout };
