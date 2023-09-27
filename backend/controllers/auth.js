@@ -8,7 +8,7 @@ const isLoggedin = require("../controllers/isLoggedin");
 const event = require(path.join(__dirname, "..", "controllers", "adm", "admin", "event.js"));
 
 // Importe os módulos corretos do Firebase
-const firebase = require(path.join(__dirname, "..", "data", "firebase"));
+const app = require(path.join(__dirname, "..", "data", "firebase"));
 
 // Import das funções de login e logout
 const {login, logout} = require(path.join(__dirname, "..", "controllers", "login.js"));
@@ -37,26 +37,26 @@ const loadFeedback = require(path.join(__dirname, "..", "controllers", "adm", "a
 const onCertificado = require(path.join(__dirname, "..", "controllers", "adm", "admin", "onCertificado.js"));
 
 // Define as rotas de login e logout
-router.post('/login',login);
+router.post('/login',app,login);
 router.get('/logout',logout);
 
 //rota loginADM
-router.post('/admin/login', loginADM);
+router.post('/admin/login',app, loginADM);
 
 //rota profile
-router.get('/profile',isLoggedin,profile)
+router.get('/profile',app,isLoggedin,profile)
 
 //rota check-in//checkout
-router.post('/check-in',checkCredentials,checkIn)
-router.post('/check-out',checkCredentials,checkOut)
+router.post('/check-in',app,checkCredentials,checkIn)
+router.post('/check-out',app,checkCredentials,checkOut)
 //check-out em massa
-router.get('/check-out-all',checkCredentials, (req,res)=>{checkOutAll(req,res)})
+router.get('/check-out-all',app,checkCredentials, (req,res)=>{checkOutAll(req,res)})
 
 //rota qrCode
-router.get('/qrCodeGet',isLoggedin, qrCode)
+router.get('/qrCodeGet',app,isLoggedin, qrCode)
 
 //check feedback
-router.get("/check-feedback", isLoggedin, async (req,res)=>{
+router.get("/check-feedback",app, isLoggedin, async (req,res)=>{
     let feedback = await checkFeedback(req,res);
     console.log(feedback)
     if(feedback){
@@ -66,11 +66,11 @@ router.get("/check-feedback", isLoggedin, async (req,res)=>{
     }
 })
 //turn on feedback and certificado
-router.get("/finish-event", checkCredentials, onFeedback, onCertificado,(req,res)=>{
+router.get("/finish-event",app, checkCredentials, onFeedback, onCertificado,(req,res)=>{
     res.status(202).send("Feedbacks ativados");
 })
 //rota add feedback
-router.post("/add-feedback", isLoggedin, (req,res)=>{
+router.post("/add-feedback",app, isLoggedin, (req,res)=>{
     let feedback = checkFeedback(req,res);
     if(feedback){
         addFeedback(req,res)
@@ -80,7 +80,7 @@ router.post("/add-feedback", isLoggedin, (req,res)=>{
 })
 
 //carregar feedbacks
-router.get("/load-feedbacks", checkCredentials, ()=>{
+router.get("/load-feedbacks",app, checkCredentials, ()=>{
     let feedback = checkFeedback(req,res);
     if(feedback){
         loadFeedback()
@@ -90,7 +90,7 @@ router.get("/load-feedbacks", checkCredentials, ()=>{
 })
 
 //rota event
-router.get("/event", isLoggedin, async (req,res)=>{
+router.get("/event",app, isLoggedin, async (req,res)=>{
     if(await event){
         res.status(200).send("Evento ocorrendo")
     }else{
