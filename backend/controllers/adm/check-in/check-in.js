@@ -8,6 +8,11 @@ function checkIn(req,res){
         const userID = req.body.userID;
         const RG = req.body.RG;
 
+        console.log(email);
+        console.log(name);
+        console.log(userID);
+        console.log(RG);
+
         //checar se usuario existe
         const dbRef = ref(db, "users/" + name);
         get(dbRef).then((snapshot) => {
@@ -24,7 +29,7 @@ function checkIn(req,res){
                     get(dbRef, "checkIn/" + name).then((snapshot) => {
                         //se ja fez check-in
                         if(snapshot.exists()){
-                            res.status(400).send("Usuario ja fez check-in");
+                            res.status(404).send("Usuario ja fez check-in");
                         //se nao fez check-in
                         }else{
                             //fazer check-in
