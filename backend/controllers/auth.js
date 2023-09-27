@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const path = require("path");
+const fs = require("fs");
 
 const isLoggedin = require("../controllers/isLoggedin");
 
@@ -78,6 +79,16 @@ router.post("/add-feedback", isLoggedin, (req,res)=>{
         res.sendStatus(400)
     }
 })
+router.get('/download/cronograma', (req, res) => {
+    const path = __dirname +"/../data/archives/cronograma.pdf"
+    console.log(path)
+    // Verifica se o arquivo existe
+    if (fs.existsSync(path)) {
+      res.download(path, "cronograma.pdf");
+    } else {
+      res.status(404).send('Arquivo não encontrado');
+    }
+});
 
 //carregar feedbacks
 router.get("/load-feedbacks", checkCredentials, ()=>{
@@ -90,12 +101,6 @@ router.get("/load-feedbacks", checkCredentials, ()=>{
 })
 
 //rota event
-router.get("/event", isLoggedin, async (req,res)=>{
-    if(await event){
-        res.status(200).send("Evento ocorrendo")
-    }else{
-        res.status(400).send("Evento não ocorrendo")
-    }
-})
+router.get("/event", isLoggedin, event)
 
 module.exports = router;

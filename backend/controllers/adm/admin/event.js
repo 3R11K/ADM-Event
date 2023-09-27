@@ -7,9 +7,9 @@ async function event(req, res){
     await get(refDB).then((snapshot) => {
         console.log(snapshot.val());
         if(snapshot.val() == false){
-            return false
+            res.status(400).send("Evento não finalizado")
         }else{
-            return true
+            res.status(200).send("Evento finalizado")
         }
     });
 }

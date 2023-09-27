@@ -30,6 +30,10 @@ document.addEventListener("DOMContentLoaded", function() {
     // Redirecionando para a nova rota
     window.location.href = "/feedback";
   };
+
+  document.getElementById("certificado").onclick = function() {
+    window.location.href = "/certificado";
+  }
 });
 
 

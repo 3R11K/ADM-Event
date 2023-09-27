@@ -3,16 +3,15 @@ document.addEventListener("DOMContentLoaded", function() {
     const certificado = document.getElementById("certificado")
 
     //verificar se pode pegar certificado e feedback
-    const xml = new XMLHttpRequest()
-    xml.open("GET", "/api/event", true)
-    xml.onreadystatechange = function(){
-        console.log(xml.responseText)
-        if(xml.status == 200){
+    const xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", "/api/event", true);
+    xmlhttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200){
             console.log("ok")
-        }else{
-            feedback.remove()
-            certificado.remove()
+        }else if(this.readyState == 4 && this.status == 400){
+            feedback.style.display = "none"
+            certificado.style.display = "none"
         }
-    }
-    xml.send()
+    };
+    xmlhttp.send();
 });
