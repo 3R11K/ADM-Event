@@ -79,13 +79,13 @@ header button:hover{
 #feedback{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: top;
     width: 100%;
     margin: 2vh auto;
 }
 
-#feedback input{
-    height: 25vh;
+#feedback textarea{
+    height: 30vh;
 }
 
 #texto_1{
@@ -94,14 +94,14 @@ header button:hover{
     height: 15vh;
     width: 80vw;
     border: 2px;
-    font-size: 2vh;
+    font-size: 2.5vh;
     border-radius: 10px;
-    justify-content: center;
-    content-visibility: center;
-    text-align: left;
     line-height: 5vh;
-    overflow-x: auto;
-    white-space: nowrap;
+    padding: 10px;
+    justify-content: left;
+    align-items: top;
+    white-space: normal;
+    overflow-y: auto;
 }
 
 #texto_1:focus{
@@ -124,7 +124,6 @@ header button:hover{
     background-color: #1A476A;
     font-size: 3vh;
     color: #fff;
-    margin-top: 10vh;
     cursor: pointer;
 }
 
