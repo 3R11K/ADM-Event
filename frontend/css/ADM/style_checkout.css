@@ -269,3 +269,9 @@ footer{
     align-items: center;
     transition: 0.2s display;
 }
+
+@media (min-width: 600px) {
+    body{
+        overflow: auto;
+    }
+}

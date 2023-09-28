@@ -183,3 +183,9 @@ header{
     margin-bottom: 0vh;
     color:#fff;
 }
+
+@media (min-width: 600px) {
+    body{
+        overflow: auto;
+    }
+}
