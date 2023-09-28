@@ -22,23 +22,35 @@ function checkIn(req,res){
                 const userRG = userData.RG;
                 const userUserID = userData.userID;
                 const userEmail = userData.email;
+                console.log({userRG, userUserID, userEmail})
                 //checar se dados batem
                 if (userRG == RG && userUserID == userID && userEmail == email) {
                     //checar se ja fez check-in
-                    //fazer check-in
-                    const date = new Date();
-                    //data do dia, mes e ano;
-                    const day = date.getDate();
-                    const month = date.getMonth() + 1;
-                    const year = date.getFullYear();
-                    const data = day + " " + month+ " " + year;
-                        //pegar horario em minutos
-                    const checkInTime = date.getHours()*60 + date.getMinutes();
-                    const check = {
-                        [data]: checkInTime
-                    }
-                    set(ref(db, "checkIn/" + name), check).then(() => {
-                        res.status(200).send("Check-in realizado com sucesso");
+                    const dbRef = ref(db, "checkIn/" + name);
+                    get(dbRef, "checkIn/" + name).then((snapshot) => {
+                        //se ja fez check-in
+                        if(snapshot.exists()){
+                            res.status(404).send("Usuario ja fez check-in");
+                        //se nao fez check-in
+                        }else{
+                            //fazer check-in
+                            const date = new Date();
+                            //data do dia, mes e ano;
+                            const day = date.getDate();
+                            const month = date.getMonth() + 1;
+                            const year = date.getFullYear();
+
+                            const data = day + " " + month+ " " + year;
+
+                            //pegar horario em minutos
+                            const checkInTime = date.getHours()*60 + date.getMinutes();
+                            const check = {
+                                [data]: checkInTime
+                            }
+                            set(ref(db, "checkIn/" + name), check).then(() => {
+                                res.status(200).send("Check-in realizado com sucesso");
+                            });
+                        }
                     });
                 } else {
                     res.status(404).send("Usuario nao existe");

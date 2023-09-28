@@ -49,10 +49,10 @@ router.post('/admin/login', loginADM);
 router.get('/profile',isLoggedin,profile)
 
 //rota check-in//checkout
-router.post('/check-in',checkIn)
-router.post('/check-out',checkOut)
+router.post('/check-in',checkCredentials,checkIn)
+router.post('/check-out',checkCredentials,checkOut)
 //check-out em massa
-router.get('/check-out-all', (req,res)=>{checkOutAll(req,res)})
+router.get('/check-out-all',checkCredentials, (req,res)=>{checkOutAll(req,res)})
 
 //rota qrCode
 router.get('/qrCodeGet',isLoggedin, qrCode)
