@@ -75,6 +75,9 @@ function checkIn() {
       }else if(xmlHttp.readyState == 4 && xmlHttp.status == 400) {
         alert("Erro ao realizar check-in!");
         window.location.href = "/home-adm";
+      }else if(xmlHttp.readyState == 4 && xmlHttp.status == 404) {
+        alert("Usuário não existe!");
+        window.location.href = "/home-adm";
       }
     }
     xmlHttp.send(JSON.stringify(data));

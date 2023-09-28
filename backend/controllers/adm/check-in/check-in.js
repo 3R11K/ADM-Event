@@ -19,17 +19,15 @@ function checkIn(req,res){
             if(snapshot.exists()){
                 //pegar dados do usuario no banco
                 const userData = Object.values(snapshot.val())[0];
-                const userRG = userData.RG;
-                const userUserID = userData.userID;
                 const userEmail = userData.email;
                 //checar se dados batem
-                if (userRG == RG && userUserID == userID && userEmail == email) {
+                if (userEmail == email) {
                     //checar se ja fez check-in
                     const dbRef = ref(db, "checkIn/" + name);
                     get(dbRef, "checkIn/" + name).then((snapshot) => {
                         //se ja fez check-in
                         if(snapshot.exists()){
-                            res.status(404).send("Usuario ja fez check-in");
+                            res.status(400).send("Usuario ja fez check-in");
                         //se nao fez check-in
                         }else{
                             //fazer check-in
