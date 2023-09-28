@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.getElementById("confirmar").onclick = function() {
     checkIn();
-    alert("botão clicado")
   }
 });
 
