@@ -68,10 +68,11 @@ function checkIn() {
     xmlHttp.open("POST", "/api/check-in", false);
     xmlHttp.setRequestHeader("Content-Type", "application/json");
     xmlHttp.onreadystatechange = function() {
-      if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+      if(xmlHttp.status == 200) {
         alert("Check-in realizado com sucesso!");
-        window.location.href = "/home-adm";
-      }else if(xmlHttp.readyState == 4 && xmlHttp.status == 400) {
+        document.getElementById('inName').innerHTML = "";
+        document.getElementById('inRG').innerHTML = "";
+      }else if(xmlHttp.status == 400) {
         alert("Erro ao realizar check-in!");
         window.location.href = "/home-adm";
       }
