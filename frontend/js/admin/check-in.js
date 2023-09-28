@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   document.getElementById("confirmar").onclick = function() {
+    loading();
     checkIn();
-    alert("botão clicado")
   }
 });
 
@@ -69,6 +69,7 @@ function checkIn() {
     xmlHttp.open("POST", "/api/check-in", false);
     xmlHttp.setRequestHeader("Content-Type", "application/json");
     xmlHttp.onreadystatechange = function() {
+      loaded();
       if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
         alert("Check-in realizado com sucesso!");
         window.location.href = "/home-adm";
@@ -83,4 +84,12 @@ function checkIn() {
     xmlHttp.send(JSON.stringify(data));
 
   }
+}
+
+function loading() {
+  document.getElementById('loadingOverlay').style.display = 'flex';
+}
+
+function loaded() {
+  document.getElementById('loadingOverlay').style.display = 'none';
 }

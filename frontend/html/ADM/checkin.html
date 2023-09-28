@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/ADM/style_checkin.css">
+    <link rel="stylesheet" href="../../css/USUARIO/loader.css">
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <script src="../../js/admin/check-in.js"></script>
     <title>Check-in</title>
@@ -14,6 +15,10 @@
         <button><img src="../../imagens/home.png" alt="home" id="home"></button>
         <img src="../../imagens/logo2023SEAUPP.png" id="logo_SEAUPP">
     </header>
+
+    <div class="overlay" id="loadingOverlay" style="display: none;">
+        <span class="loader"></span>
+    </div>
 
         <div id="result">
             <video id="scanner" playsinline></video>
