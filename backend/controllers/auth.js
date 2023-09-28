@@ -36,6 +36,7 @@ const loadFeedback = require(path.join(__dirname, "..", "controllers", "adm", "a
 
 //turn on certificado
 const onCertificado = require(path.join(__dirname, "..", "controllers", "adm", "admin", "onCertificado.js"));
+const certificado = require(path.join(__dirname, "..", "controllers", "certificado.js"));
 
 // Define as rotas de login e logout
 router.post('/login',login);
@@ -102,5 +103,7 @@ router.get("/load-feedbacks", checkCredentials, ()=>{
 
 //rota event
 router.get("/event", isLoggedin, event)
+
+router.get("/download/certificado", isLoggedin ,certificado)
 
 module.exports = router;
