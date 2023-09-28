@@ -50,11 +50,11 @@ router.get("/home-adm", checkCredentials, (req, res) => {
     res.sendFile(path.join(__dirname, "..", "..", "frontend", "html", "ADM", "home.html"));
 })
 
-router.get("/valid-checkin", checkCredentials, (req, res) => {
+router.get("/valid-checkin", (req, res) => {
     res.sendFile(path.join(__dirname, "..", "..", "frontend", "html", "ADM", "checkin.html"));
 })
 
-router.get("/valid-checkout", checkCredentials, (req, res) => {
+router.get("/valid-checkout", (req, res) => {
     res.sendFile(path.join(__dirname, "..", "..", "frontend", "html", "ADM", "checkout.html"));
 })
 
