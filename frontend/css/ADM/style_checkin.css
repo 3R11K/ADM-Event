@@ -179,3 +179,9 @@ footer{
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
+
+@media (min-width: 600px) {
+    body{
+        overflow: auto;
+    }
+}

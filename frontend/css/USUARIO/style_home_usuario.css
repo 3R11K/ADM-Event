@@ -171,3 +171,9 @@ footer{
 #certificado:hover{
     background-color: #368516;
 }
+
+@media (min-width: 600px) {
+    body{
+        overflow: auto;
+    }
+}

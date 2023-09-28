@@ -153,3 +153,9 @@ footer{
     width: 20%;
     height: 20%;
 }
+
+@media (min-width: 600px) {
+    body{
+        overflow: auto;
+    }
+}
