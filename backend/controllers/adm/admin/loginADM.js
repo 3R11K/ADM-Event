@@ -1,15 +1,17 @@
-const { getAuth, signInWithEmailAndPassword, signOut } = require("firebase/auth");
+const { getAuth, signInWithEmailAndPassword, signOut, browserSessionPersistence } = require("firebase/auth");
 const auth = getAuth();
 
 const {getDatabase, ref, onValue} = require("firebase/database");
 const db = getDatabase();
 
 //login function
-function loginADM(req, res){
+async function loginADM(req, res){
     let email = req.body.email;
     let password = req.body.password;
     console.log(email, password)
-    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+    setPersistence(auth, browserSessionPersistence)
+    .then(async() => {
+    return signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
         let email =user.email;
@@ -18,7 +20,7 @@ function loginADM(req, res){
         
     
             const dbRef = ref(db, "admin/" + uid);
-            onValue(dbRef, (snapshot) => {
+            get(dbRef, (snapshot) => {
                 //verificar se email está cadastrado no banco de dados de admin e entao deslogar se nao encontrado
                 if(snapshot.exists()){
                     if(snapshot.val().email === email){
@@ -47,7 +49,7 @@ function loginADM(req, res){
         const errorCode = error.code;
         const errorMessage = error.message;
     });
-
+    })
 }
 
 module.exports = loginADM;

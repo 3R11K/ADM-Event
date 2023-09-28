@@ -18,7 +18,6 @@ async function checkCredentials(req, res, next) {
                 next();
             } else {
                 // Não é um administrador, fazer logout e redirecionar para a página de login
-                await signOut(auth);
                 res.redirect("/login");
             }
         } catch (error) {
