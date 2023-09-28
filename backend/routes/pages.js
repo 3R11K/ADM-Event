@@ -33,8 +33,9 @@ router.get("/feedback",isLoggedin, (req, res) => {
     }
 });
 
-router.get("/certificado",isLoggedin, (req, res) => {
-    if(checkFeedback){
+router.get("/certificado",isLoggedin, async (req, res) => {
+    let check = await checkFeedback();
+    if(check){
         res.sendFile(path.join(__dirname, "..", "..", "frontend", "html", "USUARIO", "certificado.html"));
     }else{
         res.redirect("/home")
