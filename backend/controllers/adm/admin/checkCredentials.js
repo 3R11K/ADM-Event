@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken'); // Importe a biblioteca jsonwebtoken
 const cookieParser = require('cookie-parser'); // Importe a biblioteca cookie-parser
 
 // Chave secreta usada para verificar o token JWT
-const secretKey = 'sua_chave_secreta';
+const secretKey = process.env.SESSION_SECRET;
 
 // Função para verificar o token JWT a partir dos cookies
 function verifyTokenFromCookie(req) {
@@ -25,6 +25,7 @@ function verifyTokenFromCookie(req) {
 
 async function checkCredentials(req, res, next) {
   const decodedToken = verifyTokenFromCookie(req);
+  console.log(decodedToken)
 
   if (decodedToken !== null) {
     const dbRef = ref(db, "admin/" + decodedToken.userId);
