@@ -83,8 +83,9 @@ header button:hover{
     border: 0px;
     border-radius: 20vw;
     font-size: 3vh;
-    margin-top: 2vh;
+    margin-top: 1vh;
     cursor: pointer;
+    z-index: 2;
 }
 
 #certificado:hover{
@@ -101,10 +102,46 @@ header button:hover{
     font-size: 3vh;
     margin-top: 2vh;
     cursor: pointer;
+    z-index: 2;
 }
 
 #feedback:hover{
     background-color: #368516;
+}
+
+#imgCertificado{
+    width: 100%; 
+    display: flex; 
+    justify-content: center; 
+    position: relative;
+}
+
+#name{
+    z-index: 2; 
+    position: absolute; 
+    top: 54px;
+}
+
+#rg{
+    font-size:9px;
+    z-index: 2; 
+    position: absolute; 
+    top: 69.5px; 
+    left: 90px;
+}
+
+#dia{
+    font-size:7px;
+    z-index: 2; 
+    position: absolute; 
+    top:107px; 
+    left: 145px;
+}
+
+#seuCertificado{
+    width: 297px; 
+    height: 210xp;
+    margin: 0;
 }
 
 footer{
