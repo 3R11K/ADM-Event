@@ -1,41 +1,67 @@
-const {getAuth} = require("firebase/auth");
-
-const auth = getAuth();
-const user = auth.currentUser;
-
-const {getDatabase, ref, set, onValue} = require("firebase/database");
+const { getDatabase, ref, get } = require("firebase/database");
+const jwt = require('jsonwebtoken'); // Importe a biblioteca jsonwebtoken
+const cookieParser = require('cookie-parser'); // Importe a biblioteca cookie-parser
+require("dotenv").config();
 
 const db = getDatabase();
 
-function profile(req, res){
+// Chave secreta usada para verificar o token JWT
+const secretKey = process.env.SESSION_SECRET;
 
-    const user = auth.currentUser;
+async function profile(req, res) {
+  // Verifique o token JWT a partir dos cookies
+  const decodedToken = verifyTokenFromCookie(req);
+  console.log(decodedToken)
 
-    //se o usuário estiver logado, pegar o nome e email dele e retornar para o front
-    if(user !== null){
-        let name = "";
-        let email = "";
-        let miniCursos = "";
+  if (decodedToken !== null) {
+    console.log("Token válido");
+    // O token JWT é válido, você pode usar as informações decodificadas
+    const name = decodedToken.name;
+    console.log(name)
+    const dbRef = ref(db, "users/" + name);
 
-        //pega o nome e email do usuário
-        user.providerData.forEach((profile) => {
-            name = profile.displayName;
-            email = profile.email;
-        })
-        //pegar os minicursos do banco de dados, acessar o nó filho do usuário e pegar os minicursos
-        const dbRef = ref(db, "users/" + name)
-        onValue(dbRef, (snapshot) => {
-            const data = snapshot.val();
-            //acessa nó filho do usuário
-            const node = Object.values(data)[0];
-            const curso = node.Curso;
-            miniCursos = node.miniCurso;
-            //retorna os dados para o front
-            res.status(200).send({name: name, email: email, miniCursos: miniCursos, curso: curso});
-        })
-    }else{
-        res.redirect("/");
+    try {
+      const snapshot = await get(dbRef);
+      const data = snapshot.val();
+      console.log(data)
+
+      if (data) {
+        // Acessa o nó filho do usuário
+        const node = Object.values(data)[0];
+        const curso = node.Curso;
+        const email = node.email;
+        const miniCursos = node.miniCurso;
+
+        // Retorna os dados para o front
+        res.status(200).send({ name, email, miniCursos, curso });
+      } else {
+        // Não foram encontrados dados para o usuário
+        res.status(400).send("Dados do usuário não encontrados");
+      }
+    } catch (error) {
+      console.error("Erro ao buscar dados do Firebase:", error);
+      res.status(500).send("Erro ao buscar dados do Firebase");
     }
+  } else {
+    // Token não encontrado ou inválido, redirecionar para a página de login
+    res.redirect("/");
+  }
+}
+
+// Função para verificar o token JWT a partir dos cookies
+function verifyTokenFromCookie(req) {
+  const token = req.cookies.token;
+
+  if (!token) {
+    return null; // Token não encontrado nos cookies
+  }
+
+  try {
+    const decoded = jwt.verify(token, secretKey);
+    return decoded;
+  } catch (error) {
+    return null; // Token inválido
+  }
 }
 
 module.exports = profile;

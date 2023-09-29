@@ -3,13 +3,13 @@ const router = express.Router();
 const path = require("path");
 const fs = require("fs");
 
+// Importe os módulos corretos do Firebase
+const firebase = require(path.join(__dirname, "..", "data", "firebase"));
+
 const isLoggedin = require("../controllers/isLoggedin");
 
 //verificar se evento está ocorrendo
 const event = require(path.join(__dirname, "..", "controllers", "adm", "admin", "event.js"));
-
-// Importe os módulos corretos do Firebase
-const firebase = require(path.join(__dirname, "..", "data", "firebase"));
 
 // Import das funções de login e logout
 const {login, logout} = require(path.join(__dirname, "..", "controllers", "login.js"));

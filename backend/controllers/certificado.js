@@ -1,11 +1,14 @@
-const { getAuth} = require("firebase/auth");
-const auth = getAuth();
+const jwt = require("jsonwebtoken");
+
+const secretKey = process.env.SESSION_SECRET;
 
 const {getDatabase, ref, onValue} = require("firebase/database");
 const db = getDatabase();
 
 async function createCertificado(req, res) {
-    const userName = auth.currentUser.displayName;
+    const decodedToken = verifyTokenFromCookie(req);
+
+    const userName = decodedToken.name;
     //alertar a respostta que deve ser o numero de horas
     const horas = await getHours(userName);
     console.log(horas);
@@ -44,11 +47,25 @@ async function getHours(userName) {
 
 async function createPDF(req, res, userName, RG) {
     try{
-
         res.status(200).send({userName: userName, RG: RG});
     }catch(err){
         console.log(err);
         res.status(400).send("Erro ao criar o certificado");
+    }
+}
+
+function verifyTokenFromCookie(req) {
+    const token = req.cookies.token;
+  
+    if (!token) {
+      return null; // Token não encontrado nos cookies
+    }
+  
+    try {
+      const decoded = jwt.verify(token, secretKey);
+      return decoded;
+    } catch (error) {
+      return null; // Token inválido
     }
 }
 

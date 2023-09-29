@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.location.href = "/home-adm";
                 }else if(xmlhttp.readyState == 4 && xmlhttp.status == 400){
                     alert(xmlhttp.responseText);
+                }else if(xmlhttp.readyState == 4 && xmlhttp.status == 500){
+                    alert(xmlhttp.responseText);
                 }
             }
             xmlhttp.send(JSON.stringify(data));

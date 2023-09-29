@@ -1,27 +1,27 @@
+const jwt = require("jsonwebtoken");
 //gerar qr code e enviar para o front
-const {getAuth} = require("firebase/auth");
-const auth = getAuth();
 
 // Importe os módulos corretos do Firebase
 const {getDatabase, ref, onValue} = require("firebase/database");
 const db = getDatabase();
 
+const secretKey = process.env.SESSION_SECRET;
+
 // Importe o módulo do QRCode
 const QRCode = require('qrcode');
 
 //função para gerar o qr code
-function qrCode(req, res){
+async function qrCode(req, res){
+    try{
+    const decodedToken = verifyTokenFromCookie(req);
 
-    console.log("Gerando QR Code");
-    const user = auth.currentUser;
+    console.log(decodedToken);
+
     //se o usuário estiver logado, pegar o nome e email dele e retornar para o front como um qr code
-    if(user !== null){
-        let name = "";
-        let email = "";
-        user.providerData.forEach((profile) => {
-            name = profile.displayName;
-            email = profile.email;
-        })
+    if(decodedToken !== null){
+        let name = decodedToken.name;
+        let email = decodedToken.email;
+        
         const dbRef = ref(db, "users/" + name)
         onValue(dbRef, (snapshot) => {
 
@@ -49,7 +49,26 @@ function qrCode(req, res){
         
     }else{
         res.status(400).send({message: "Usuário não logado"});
+    }}catch(error){
+        console.error("Erro ao buscar dados do Firebase:", error);
+        res.status(500).send("Erro ao buscar dados do Firebase");
     }
 }
+
+function verifyTokenFromCookie(req) {
+    const token = req.cookies.token;
+  
+    if (!token) {
+      return null; // Token não encontrado nos cookies
+    }
+  
+    try {
+      const decoded = jwt.verify(token, secretKey);
+      return decoded;
+    } catch (error) {
+        console.log(error)
+      return null; // Token inválido
+    }
+  }
 
 module.exports = qrCode;
