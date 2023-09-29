@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("entrar").onclick = function() {
-        document.body.innerHTML += `<div class="overlay" id="loadingOverlay">
-                                        <span class="loader"></span>
-                                    </div>`;
+        
     
         // Pegar dados do form
         let email = document.getElementById("email").value;
         let RG = document.getElementById("rg").value;
         console.log(RG);
-    
+        document.body.innerHTML += `<div class="overlay" id="loadingOverlay">
+                                        <span class="loader"></span>
+                                    </div>`;
         if (email !== "" && RG !== "") {
             // Enviar dados para o backend
             fetch('/api/login', {
