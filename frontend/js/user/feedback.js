@@ -8,9 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById("enviar").onclick = function() {
         console.log("enviando feedback");
-        // Usar AJAX
-    
-        // Pegar dados do form
         let feedback = document.getElementById("texto_1").value;
     
         if (feedback !== "") {
@@ -25,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log(res);
                 if (res.status === 200) {
                     alert("Feedback enviado com sucesso");
+                    window.location.href = "/home";
                 }
             })
         }

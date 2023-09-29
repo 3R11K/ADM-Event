@@ -92,14 +92,14 @@ router.get('/download/cronograma', (req, res) => {
 });
 
 //carregar feedbacks
-router.get("/load-feedbacks", checkCredentials, ()=>{
-    let feedback = checkFeedback(req,res);
-    if(feedback){
-        loadFeedback()
-    }else{
-        res.sendStatus(400)
+router.get("/load-feedbacks", checkCredentials, (req, res) => {
+    let feedback = checkFeedback();
+    if (feedback) {
+        loadFeedback(req, res); // Passe os argumentos req e res para a função loadFeedback
+    } else {
+        res.sendStatus(400);
     }
-})
+});
 
 //rota event
 router.get("/event", isLoggedin, event)

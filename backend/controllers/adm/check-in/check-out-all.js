@@ -22,34 +22,37 @@ async function checkOutAll(req,res){
         }
     });
 
-    for(let user in data){
-        const checkin = data[user][fDate]
-        let diference = minutes - checkin;
-        await get(ref(db,"users/"+ user+"/acumuladas")).then((snapshot) => {
-            //se a snapshot existir
-            if(snapshot.exists()){
-                let acumuladas = snapshot.val();
-                diference += acumuladas;
-                set(ref(db,"users/"+ user+"/acumuladas"), diference).then(()=>{
-                    console.log("acumuladas setadas");
-                    res.status(200).send("acumuladas setadas");
-                    deleteCheckin(user);
-                }).catch((err)=>{
-                    console.log(err);
-                    res.status(400).send(err);
-                })
-            }else{
-                set(ref(db,"users/"+ user+"/acumuladas"), diference).then(()=>{
-                    console.log("acumuladas setadas");
-                    res.status(200).send("acumuladas setadas");
-                    deleteCheckin(user);
+    try{
 
-                }).catch((err)=>{
-                    console.log(err);
-                    res.status(400).send(err);
-                })
-            }
-        });
+        for(let user in data){
+            const checkin = data[user][fDate]
+            let diference = minutes - checkin;
+            await get(ref(db,"users/"+ user+"/acumuladas")).then((snapshot) => {
+                //se a snapshot existir
+                if(snapshot.exists()){
+                    let acumuladas = snapshot.val();
+                    diference += acumuladas;
+                    set(ref(db,"users/"+ user+"/acumuladas"), diference).then(()=>{
+                        console.log("acumuladas setadas");
+                        deleteCheckin(user);
+                    }).catch((err)=>{
+                        console.log(err, "erro ao setar acumuladas de "+ user);
+                    })
+                }else{
+                    set(ref(db,"users/"+ user+"/acumuladas"), diference).then(()=>{
+                        console.log("acumuladas setadas");
+                        deleteCheckin(user);
+
+                    }).catch((err)=>{
+                        console.log(err, "erro ao setar acumuladas de "+ user);
+                    })
+                }
+            });
+        };
+        res.status(200).send("Check-out de todos os usuários realizado com sucesso");
+    }catch(err){
+        console.log(err);
+        res.status(400).send("Erro ao fazer check-out de todos os usuários");
     }
 }
 

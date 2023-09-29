@@ -12,11 +12,32 @@ document.addEventListener("DOMContentLoaded", function(event) {
   xmlhttp.open("GET", "/api/load-feedbacks", true);
   xmlhttp.onreadystatechange = () => {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-      //log nas respostas
-      console.log(xmlhttp.responseText);
+      const feedbacks = JSON.parse(xmlhttp.response);
+      const numFeedbacks = Object.keys(feedbacks).length;
+
+      if(numFeedbacks > 3){
+        document.getElementById("comentarios").style.overflowY = "scroll";
+      }
+
+      if (numFeedbacks === 0) {
+        document.getElementById("comentarios").innerHTML = "<p>Não há feedbacks</p>";
+      }
+      else{
+        for (const key in feedbacks) {
+            if (feedbacks.hasOwnProperty(key)) {
+                const comment = feedbacks[key];
+                let newComment = `<div id="nome">${key}</div>
+                                  <div id="feedback">
+                                      <pr>${comment}</pr>
+                                  </div>`
+                document.getElementById("comentarios").innerHTML += newComment;
+            }
+        }
+    }
     }else if(xmlhttp.readyState == 4 && xmlhttp.status == 400){
       alert(xmlhttp.responseText);
     }
   }
+  xmlhttp.send();
 
 });
