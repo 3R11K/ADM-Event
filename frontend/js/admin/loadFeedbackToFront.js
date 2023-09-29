@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const xmlhttp = new XMLHttpRequest();
   xmlhttp.open("GET", "/api/load-feedbacks", true);
   xmlhttp.onreadystatechange = () => {
+    document.getElementById("loadingOverlay").style.display = "none";
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
       const feedbacks = JSON.parse(xmlhttp.response);
       const numFeedbacks = Object.keys(feedbacks).length;

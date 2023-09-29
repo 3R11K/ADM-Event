@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("entrar").onclick = function() {
-        console.log("login.js loaded");
-        // Usar AJAX
+        document.body.innerHTML += `<div class="overlay" id="loadingOverlay">
+                                        <span class="loader"></span>
+                                    </div>`;
     
         // Pegar dados do form
         let email = document.getElementById("email").value;
@@ -24,6 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     // Exibir mensagem de erro
                     alert("Email ou RG incorretos");
+                    //recarregar a página
+                    window.location.href = "/";
                 }
             })
         }

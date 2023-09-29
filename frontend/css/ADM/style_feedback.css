@@ -97,25 +97,30 @@ header button:hover{
     border-top-right-radius: 5px;
 }
 
-#feedback{
+#feedback {
+    /* Não deixar o comentário passar do limite de feedback */
     display: flex;
     justify-content: left;
     align-items: top;
     margin: -5vh auto;
     width: 80vw;
-    height: 10vh;
+    max-width: 100%; /* Defina a largura máxima */
+    height: 10vh; /* Defina a altura */
     border: 2px solid #1A476A;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    overflow-y: auto; /* Adicione overflow-y:auto; para permitir rolagem vertical quando necessário */
 }
 
-#feedback pr{
+#feedback pr {
     font-size: 2vh;
     color: black;
     margin-left: 3vw;
     margin-top: 1vh;
+    white-space: pre-wrap; /* Permite que o texto quebre em várias linhas */
+    word-wrap: break-word; /* Permite quebrar palavras longas quando necessário */
+    width: 90%;
 }
-
 #nome_2{
     display: flex;
     justify-content: center;
