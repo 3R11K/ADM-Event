@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   document.getElementById("confirmar").onclick = function() {
+    loading()
     checkOut();
   }
 
@@ -74,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   document.getElementById("continuar").onclick = () => {
+      loading()
       checkPassword();
   }
 });
@@ -91,6 +93,7 @@ function checkOut() {
     xmlHttp.open("POST", "/api/check-out", false);
     xmlHttp.setRequestHeader("Content-Type", "application/json");
     xmlHttp.onreadystatechange = function() {
+      loaded()
       if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
         alert("checkout realizado com sucesso!");
         window.location.href = "/home-adm";
@@ -139,6 +142,7 @@ function checkPassword() {
       console.log("entrei");
       xml.open("GET", "/api/check-out-all", true);
       xml.onreadystatechange = function() {
+        loaded()
         if(xml.readyState == 4 && xml.status == 200) {
           alert("Check-out em massa realizado com sucesso!");
           window.location.href = "/home-adm";
@@ -151,4 +155,12 @@ function checkPassword() {
   } else {
       alert('Senha incorreta');
   }
+}
+
+function loading() {
+  document.getElementById('loadingOverlay').style.display = 'flex';
+}
+
+function loaded() {
+  document.getElementById('loadingOverlay').style.display = 'none';
 }
