@@ -32,7 +32,7 @@ async function checkCredentials(req, res, next) {
     try {
       const snapshot = await get(dbRef);
 
-      if (snapshot.exists() && snapshot.val().email === decodedToken.email) {
+      if (snapshot.exists() && snapshot.val().email === decodedToken.email && decodedToken.admin == true) {
         // O usuário está autenticado e é um administrador, pode continuar
         next();
       } else {

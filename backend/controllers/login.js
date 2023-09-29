@@ -1,6 +1,5 @@
 const { getAuth, signInWithEmailAndPassword, signOut } = require("firebase/auth");
 const jwt = require('jsonwebtoken'); // Importe a biblioteca jsonwebtoken
-const cookieParser = require('cookie-parser'); // Importe a biblioteca cookie-parser
 require('dotenv').config(); // Importe a biblioteca dotenv
 
 const auth = getAuth();
