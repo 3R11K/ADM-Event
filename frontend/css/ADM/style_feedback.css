@@ -189,14 +189,6 @@ header button:hover{
     margin-top: 1vh;
 }
 
-footer{
-    position: absolute;
-    display: flex;
-    bottom: 0;
-    align-items: left;
-    width: 90%;
-}
-
 @media (min-width: 600px) {
     footer {
       position: relative;
