@@ -12,12 +12,13 @@ document.addEventListener('DOMContentLoaded', function () {
   // Defina uma função para lidar com os resultados dos scans
   scanner.addListener('scan', function (content) {
     content = JSON.parse(content);
-    document.getElementById('inName').innerHTML = encodeURIComponent(content.name);
+    document.getElementById('inName').innerHTML = decodeURIComponent(content.name);
     document.getElementById('inRG').innerHTML = content.RG;
+    alert(content.name)
 
     userId = content.userID;
     email = content.email;
-    name = encodeURIComponent(content.name);
+    name = decodeURIComponent(content.name);
     RG = content.RG;
 
   });
