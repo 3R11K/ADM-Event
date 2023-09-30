@@ -22,24 +22,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
     xmlhttp.send();
 
     //botão download convertendo base64 para imagem
-    document.getElementById("downloadQR").onclick = function(event){
+    document.getElementById("downloadQR").onclick = function(event) {
+        event.preventDefault(); // Impede o comportamento padrão do link
+    
         // Selecionar a imagem pelo ID
         const imagem = document.getElementById('yourQR'); // Substitua 'id-da-imagem' pelo ID real da sua imagem
-
+    
         // Obter o URL da imagem
         const urlDaImagem = imagem.src;
-
+    
         // Criar um link de download
         const linkDeDownload = document.createElement('a');
         linkDeDownload.href = urlDaImagem;
-
+    
         // Definir o nome do arquivo de download (opcional)
         linkDeDownload.download = 'qrCodeSEAUPP.jpg'; // Substitua 'nome-da-imagem.jpg' pelo nome desejado
         linkDeDownload.setAttribute('target', '_blank');
-
+    
         // Disparar o clique para iniciar o download
         linkDeDownload.click();
-    }
+    }    
 
     document.getElementById("home").onclick = function() {
         // Redirecionando para a nova rota
