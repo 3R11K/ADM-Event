@@ -16,58 +16,29 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
         else{
             console.log("Erro ao carregar QR Code");
+            alert("Erro ao carregar QR Code");
         }
     }
     xmlhttp.send();
 
     //botão download convertendo base64 para imagem
     document.getElementById("downloadQR").onclick = function(event){
+        // Selecionar a imagem pelo ID
+        const imagem = document.getElementById('yourQR'); // Substitua 'id-da-imagem' pelo ID real da sua imagem
 
-        event.preventDefault();
-        
-        xmlhttp.open("GET", "/api/qrCodeGet", false);
-    
-        // Quando a requisição estiver pronta
-        xmlhttp.onreadystatechange = function(){
-            console.log("Requisição pronta");
-            if (this.readyState == 4 && this.status == 200) {
-                // Resposta para objeto
-                const response = JSON.parse(this.responseText);
-            
-                var imageUrl = response.url; // Renomeie a variável para imageUrl
-            
-                console.log(imageUrl);
-            
-                // Crie um elemento "a" para o download
-                var a = document.createElement("a");
-            
-                // Converta a imagem base64 em um blob
-                var blob = dataURItoBlob(imageUrl); // Use imageUrl aqui
-            
-                // Crie uma URL para o blob
-                var blobUrl = window.URL.createObjectURL(blob); // Renomeie a variável para blobUrl
-            
-                // Defina os atributos do elemento "a"
-                a.href = blobUrl;
-                a.download = "imagem.png"; // Nome do arquivo que será baixado
-                
-                // Adicione o elemento "a" ao documento
-                document.body.appendChild(a);
-            
-                // Simule um clique no elemento "a" para iniciar o download
-                a.click();
-            
-                // Remova o elemento "a" do documento
-                document.body.removeChild(a);
-            
-                // Libere a URL do blob após o download
-                window.URL.revokeObjectURL(blobUrl);
-            
-            }else{
-                console.log("Erro ao BAIXAR QR Code");
-            }
-        }
-        xmlhttp.send();
+        // Obter o URL da imagem
+        const urlDaImagem = imagem.src;
+
+        // Criar um link de download
+        const linkDeDownload = document.createElement('a');
+        linkDeDownload.href = urlDaImagem;
+
+        // Definir o nome do arquivo de download (opcional)
+        linkDeDownload.download = 'qrCodeSEAUPP.jpg'; // Substitua 'nome-da-imagem.jpg' pelo nome desejado
+        linkDeDownload.setAttribute('target', '_blank');
+
+        // Disparar o clique para iniciar o download
+        linkDeDownload.click();
     }
 
     document.getElementById("home").onclick = function() {
