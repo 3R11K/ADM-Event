@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
             if (feedbacks.hasOwnProperty(key)) {
                 const comment = feedbacks[key];
                 let newComment = `<div id="nome">${key}</div>
+                //nomes muito grandes terão rolagem horizontal
+                let newComment = `<div id="nome" style="white-space: nowrap; overflow-x: auto;">${key}</div>
                                   <div id="feedback">
                                       <pr>${comment}</pr>
                                   </div>`
