@@ -3,8 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
     
         // Pegar dados do form
-        let email = document.getElementById("email").value;
-        let RG = document.getElementById("rg").value;
+        let email = document.getElementById("email").value.trim();
+        let RG = document.getElementById("rg").value.trim();
+
         console.log(RG);
         document.body.innerHTML += `<div class="overlay" id="loadingOverlay">
                                         <span class="loader"></span>
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     // Exibir mensagem de erro
                     //texto da resposta
-                    alert("Email ou RG incorretos" + res.statusText);
+                    alert("Email ou RG incorretos \n" + res.statusText);
                     //recarregar a página
                     window.location.href = "/";
                 }
