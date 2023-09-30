@@ -43,6 +43,7 @@ body{
     border-radius: 20vw;
     margin-top: 5vh;
     cursor: pointer;
+    z-index: 3;
 }
 
 #entrar:hover{
