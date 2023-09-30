@@ -27,8 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.location.href = "/home-adm";
                 }else if(xmlhttp.readyState == 4 && xmlhttp.status == 400){
                     alert(xmlhttp.responseText);
+                    window.location.href = "/login";
                 }else if(xmlhttp.readyState == 4 && xmlhttp.status == 500){
                     alert(xmlhttp.responseText);
+                    window.location.href = "/login";
                 }
             }
             xmlhttp.send(JSON.stringify(data));
