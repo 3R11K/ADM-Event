@@ -33,31 +33,37 @@ document.addEventListener("DOMContentLoaded", function(event) {
             if (this.readyState == 4 && this.status == 200) {
                 // Resposta para objeto
                 const response = JSON.parse(this.responseText);
-    
+            
                 var imageUrl = response.url; // Renomeie a variável para imageUrl
-    
+            
                 console.log(imageUrl);
-    
+            
                 // Crie um elemento "a" para o download
                 var a = document.createElement("a");
-    
+            
                 // Converta a imagem base64 em um blob
                 var blob = dataURItoBlob(imageUrl); // Use imageUrl aqui
-    
+            
                 // Crie uma URL para o blob
                 var blobUrl = window.URL.createObjectURL(blob); // Renomeie a variável para blobUrl
-    
+            
                 // Defina os atributos do elemento "a"
                 a.href = blobUrl;
                 a.download = "imagem.png"; // Nome do arquivo que será baixado
-                    
+                
+                // Adicione o elemento "a" ao documento
+                document.body.appendChild(a);
+            
                 // Simule um clique no elemento "a" para iniciar o download
                 a.click();
-                    
+            
+                // Remova o elemento "a" do documento
+                document.body.removeChild(a);
+            
                 // Libere a URL do blob após o download
                 window.URL.revokeObjectURL(blobUrl);
-            }
-            else{
+            
+            }else{
                 console.log("Erro ao BAIXAR QR Code");
             }
         }

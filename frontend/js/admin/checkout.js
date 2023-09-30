@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
   
     document.getElementById('inName').innerHTML = content.name;
     document.getElementById('inRG').innerHTML = content.RG;
-    alert(content.name);
   
     userId = content.userID;
     email = content.email;
