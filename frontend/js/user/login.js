@@ -24,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     window.location.href = "/home";
                 } else {
                     // Exibir mensagem de erro
-                    alert("Email ou RG incorretos");
+                    //texto da resposta
+                    alert("Email ou RG incorretos" + res.statusText);
                     //recarregar a página
                     window.location.href = "/";
                 }

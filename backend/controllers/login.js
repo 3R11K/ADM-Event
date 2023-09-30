@@ -12,6 +12,9 @@ async function login(req, res) {
   const email = req.body.email;
   const password = req.body.password;
 
+  console.log('email:',email);
+  console.log("password:",password);
+
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
@@ -25,10 +28,10 @@ async function login(req, res) {
     // Envie uma resposta vazia (ou outra resposta conforme necessário)
     res.status(200).send();
   } catch (error) {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.error(errorCode);
-    console.error(errorMessage);
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.error(errorCode);
+      console.error(errorMessage);
     res.status(400).send(errorMessage);
   }
 }
