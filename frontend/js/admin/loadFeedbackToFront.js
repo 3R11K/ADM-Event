@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             if (feedbacks.hasOwnProperty(key)) {
                 const comment = feedbacks[key];
                 let newComment = `<div id="nome" style="overflow-x: auto;">${key}</div>
-                                  <div id="feedback">
+                                  <div id="feedback" style="overflow-x: auto;">
                                       <pr>${comment}</pr>
                                   </div>`
                 newComment += '<style>#feedback { margin-bottom: 1vh; overflow}</style>';
