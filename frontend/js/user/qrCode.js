@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     xmlhttp.send();
 
     //botão download convertendo base64 para imagem
-    document.getElementById("downloadQR").onclick = function(event) {
+    document.getElementById("download").onclick = function(event) {
         event.preventDefault(); // Impede o comportamento padrão do link
     
         // Selecionar a imagem pelo ID
