@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                                   <div id="feedback" style="overflow-x: auto;">
                                       <pr>${comment}</pr>
                                   </div>`
-                newComment += '<style>#feedback { margin-bottom: 1vh; overflow}</style>';
+                newComment += '<style>#feedback { margin-bottom: 1vh; overflow-x: auto}</style>';
                 document.getElementById("comentarios").innerHTML += newComment;
             }
         }
