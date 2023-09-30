@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                                   <div id="feedback">
                                       <pr>${comment}</pr>
                                   </div>`
+                newComment += '<style>#feedback { margin-bottom: 1vh; overflow}</style>';
                 document.getElementById("comentarios").innerHTML += newComment;
             }
         }
