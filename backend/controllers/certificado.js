@@ -13,7 +13,7 @@ async function createCertificado(req, res) {
     const horas = await getHours(userName);
     console.log(horas);
     
-    if(horas !== null && horas !== undefined && horas > 0){
+    if(horas !== null && horas !== undefined && horas > 1100){
         const RG = await getRG(userName);
         await createPDF(req, res, userName, RG);
     }else{
