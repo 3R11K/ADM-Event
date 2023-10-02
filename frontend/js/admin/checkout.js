@@ -148,6 +148,12 @@ function checkPassword() {
         }else if(xml.readyState == 4 && xml.status == 400) {
           alert("Erro ao realizar check-out!");
           window.location.href = "/home-adm";
+        }else if(xml.readyState == 4 && xml.status == 500) {
+          alert("Erro ao realizar check-out!");
+          window.location.href = "/home-adm";
+        }else if(xml.readyState == 4 && xml.status == 404) {
+          alert("Erro ao realizar check-out!");
+          window.location.href = "/home-adm";
         }
     }
     xml.send();
