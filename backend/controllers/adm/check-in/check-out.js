@@ -16,10 +16,9 @@ function checkOut(req,res){
                 //pegar dados do usuario no banco
                 const userData = Object.values(snapshot.val())[0];
                 const userRG = userData.RG;
-                const userUserID = userData.userID;
                 const userEmail = userData.email;
                 //checar se dados batem
-                if (userRG == RG && userUserID == userID && userEmail == email) {
+                if (userRG == RG && userEmail == email) {
                     //checar se ja fez check-in
                     const dbRef = ref(db, "checkIn/" + name);
                     get(dbRef, "checkIn/" + name).then((snapshot) => {
