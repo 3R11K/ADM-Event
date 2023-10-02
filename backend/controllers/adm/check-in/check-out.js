@@ -4,7 +4,9 @@ const db = getDatabase();
 function checkOut(req,res){
 
     try{
-        const email = req.body.email;
+        let email = req.body.email;
+        email = email.replace(/\s/g, '');
+        email = email.toLowerCase();
         const name = req.body.name;
         const userID = req.body.userID;
         const RG = req.body.RG;
@@ -16,7 +18,9 @@ function checkOut(req,res){
                 //pegar dados do usuario no banco
                 const userData = Object.values(snapshot.val())[0];
                 const userRG = userData.RG;
-                const userEmail = userData.email;
+                let userEmail = userData.email;
+                userEmail = userEmail.replace(/\s/g, '');
+                userEmail = userEmail.toLowerCase();
                 //checar se dados batem
                 if (userRG == RG && userEmail == email) {
                     //checar se ja fez check-in
