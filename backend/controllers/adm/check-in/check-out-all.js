@@ -45,7 +45,7 @@ async function checkOutAll(req, res) {
     res.status(200).send("Check-out de todos os usuários realizado com sucesso");
   } catch (err) {
     console.error(err);
-    res.status(400).send("Erro ao fazer check-out de todos os usuários");
+    res.status(400).send("Erro ao fazer check-out de todos os usuários\n" + err);
   }
 }
 
