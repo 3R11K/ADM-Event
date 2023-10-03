@@ -155,7 +155,7 @@ function checkPassword() {
           alert("Erro ao realizar check-out!");
           window.location.href = "/home-adm";
         }else if(xml.readyState == 4 && xml.status == 500) {
-          alert("Erro ao realizar check-out!");
+          alert("Erro ao realizar check-out!\n" + xml.responseText);
           window.location.href = "/home-adm";
         }else if(xml.readyState == 4 && xml.status == 404) {
           alert("Erro ao realizar check-out!");

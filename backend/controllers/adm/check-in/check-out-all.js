@@ -2,6 +2,7 @@ const { getDatabase, ref, get, set } = require("firebase/database");
 const db = getDatabase();
 
 async function checkOutAll(req, res) {
+  let errors = [];
   try {
     const date = new Date();
     const day = date.getDate();
@@ -41,11 +42,14 @@ async function checkOutAll(req, res) {
       // Exclua o check-in
       await deleteCheckin(user);
     }
-
-    res.status(200).send("Check-out de todos os usuários realizado com sucesso");
   } catch (err) {
     console.error(err);
-    res.status(400).send("Erro ao fazer check-out de todos os usuários\n" + err);
+    errors.push(err);
+  }
+  if (errors.length > 0) {
+    return res.status(500).send(errors.length + " erros ocorreram");
+  }else{
+    return res.status(200).send("Check-out realizado com sucesso");
   }
 }
 
