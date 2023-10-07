@@ -121,7 +121,7 @@ header button:hover{
     position: absolute; 
     top: 58px;
     font-size: 10px;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 #rg{
@@ -130,7 +130,7 @@ header button:hover{
     position: absolute; 
     top: 76.5px; 
     left: 92px;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 #dia{
